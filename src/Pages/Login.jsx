@@ -4,6 +4,7 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, val
 import { authContex } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet-async';
+import SocailLogin from '../SocailLogin/SocailLogin';
 
 const Login = () => {
 
@@ -108,6 +109,8 @@ const from = location.state?.from?.pathname || '/'
               <div className="form-control mt-6">
                 <input type='submit' value='submit' disabled={disabled}  className="btn btn-primary"/>
                 <p>Do not an Account please ? <Link className='text-blue-600' to='/signup'>Register</Link></p>
+
+                <SocailLogin></SocailLogin>
               </div>
             </form>
           </div>

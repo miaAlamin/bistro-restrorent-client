@@ -14,6 +14,11 @@ import Secret from "../secret/Secret";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../MainLayOut/Dashboard";
 import Cart from "../MainLayOut/Cart";
+import AlllUsers from "../MainLayOut/AlllUsers";
+import AddItems from "../MainLayOut/AddItems";
+import AdminRoutes from "./AdminRoutes";
+import ManageItems from "../MainLayOut/ManageItems";
+import UpdateItems from "../MainLayOut/UpdateItems";
 
 
 
@@ -55,12 +60,29 @@ const router = createBrowserRouter([
 
     {
       path:'/dashboard',
-      element: <Dashboard></Dashboard>,
+      element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children:[
         {
           path: 'cart',
           element: <Cart></Cart>
-        }
+        },
+        // admin routes
+        { path: 'allusers', element: <><AlllUsers></AlllUsers></>  },
+
+        { path: 'items', element: <AddItems></AddItems> },
+
+        { path: 'manageItems', element: <ManageItems></ManageItems> },
+
+        {
+           path: 'updateItems/:id', 
+          
+          element: <UpdateItems></UpdateItems>,
+          loader: ({params}) => fetch(`http://localhost:5000/mune/${params.id}`)
+
+
+
+         },
+
       ]
     }
   ]);

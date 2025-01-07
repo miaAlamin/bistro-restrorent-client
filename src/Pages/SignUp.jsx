@@ -4,10 +4,21 @@ import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import { authContex } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPiblic from "../Hooks/useAxiosPiblic";
+import SocailLogin from "../SocailLogin/SocailLogin";
 
 const SignUp = () => {
 const {creatUser, UpdateProfile} = useContext(authContex)
 const navigate = useNavigate()
+
+const useSecureAxiosPiblic = useAxiosPiblic()
+
+
+
+
+
+
+
     const {
         register,
         handleSubmit,
@@ -23,28 +34,41 @@ const navigate = useNavigate()
         })
         UpdateProfile(data.name, data.photoUrl)
         .then( ()=>{
-            console.log('User profile info Updated')
+
+          const userInfo ={
+            name: data.name,
+            email: data.email
+          }
+            
+          useSecureAxiosPiblic.post('/user', userInfo)
+          .then(res=>{
+            if(res.data.insertedId){
+
+              Swal.fire({
+                title: "SignUp Successfully",
+                showClass: {
+                popup: `
+                    animate__animated
+                    animate__fadeInUp
+                    animate__faster
+                `
+                },
+                hideClass: {
+                popup: `
+                    animate__animated
+                    animate__fadeOutDown
+                    animate__faster
+                `
+                }
+            });
+
+            navigate('/')
+
+            }
+          })
            
             
-                    Swal.fire({
-                        title: "SignUp Successfully",
-                        showClass: {
-                        popup: `
-                            animate__animated
-                            animate__fadeInUp
-                            animate__faster
-                        `
-                        },
-                        hideClass: {
-                        popup: `
-                            animate__animated
-                            animate__fadeOutDown
-                            animate__faster
-                        `
-                        }
-                    });
-
-                    navigate('/')
+                
         })
         .catch(error=>{
             console.log(error)
@@ -116,6 +140,8 @@ const navigate = useNavigate()
                 <input className="btn btn-primary" type="submit" value='SignUp'/>
                 
                 <p>Have a Account ? <Link className="text-blue-600" to='/login'>Login</Link></p>
+
+                <SocailLogin></SocailLogin>
               </div>
             </form>
           </div>
