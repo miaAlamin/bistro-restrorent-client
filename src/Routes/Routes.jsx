@@ -19,6 +19,8 @@ import AddItems from "../MainLayOut/AddItems";
 import AdminRoutes from "./AdminRoutes";
 import ManageItems from "../MainLayOut/ManageItems";
 import UpdateItems from "../MainLayOut/UpdateItems";
+import Payment from "../MainLayOut/Payment";
+import PaymentHistory from "../MainLayOut/PaymentHistory";
 
 
 
@@ -65,6 +67,14 @@ const router = createBrowserRouter([
         {
           path: 'cart',
           element: <Cart></Cart>
+        },
+        {
+          path: 'payment',
+          element: <Payment></Payment>
+        },
+        {
+          path: 'paymentHistory',
+          element: <PaymentHistory></PaymentHistory>
         },
         // admin routes
         { path: 'allusers', element: <><AlllUsers></AlllUsers></>  },
