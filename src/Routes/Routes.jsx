@@ -21,6 +21,8 @@ import ManageItems from "../MainLayOut/ManageItems";
 import UpdateItems from "../MainLayOut/UpdateItems";
 import Payment from "../MainLayOut/Payment";
 import PaymentHistory from "../MainLayOut/PaymentHistory";
+import AdminHome from "../MainLayOut/AdminHome";
+import UserHome from "../MainLayOut/UserHome";
 
 
 
@@ -73,6 +75,10 @@ const router = createBrowserRouter([
           element: <Payment></Payment>
         },
         {
+          path: 'userHome',
+          element: <UserHome></UserHome>
+        },
+        {
           path: 'paymentHistory',
           element: <PaymentHistory></PaymentHistory>
         },
@@ -91,6 +97,10 @@ const router = createBrowserRouter([
 
 
 
+         },
+         {
+          path: 'adminHome',
+          element: <AdminHome></AdminHome>
          },
 
       ]
